@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 
 export default (sequelize: any) => {
 	const User = sequelize.define('User', {
@@ -8,7 +8,12 @@ export default (sequelize: any) => {
 		},
 	});
 
-	User.associate = (models: any) => {};
+	User.associate = (models: any) => {
+		User.hasMany(models.Question, {
+			foreignKey: 'userId',
+			as: 'attemptedQuestions',
+		});
+	};
 
 	return User;
 };
