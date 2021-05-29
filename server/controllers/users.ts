@@ -12,7 +12,7 @@ export default {
 			.catch((error: Error) => res.status(400).send({ error }));
 	},
 
-	list(req: any, res: any) {
+	list(req: express.Request, res: express.Response) {
 		return User.findAll({
 			include: [
 				{
@@ -22,6 +22,29 @@ export default {
 			],
 		})
 			.then((users: any) => res.status(200).send({ users }))
+			.catch((error: Error) => res.status(400).send({ error }));
+	},
+
+	getUser(req: express.Request, res: express.Response) {
+		const { userId } = req.params;
+
+		return User.findByPk(userId, {
+			include: [
+				{
+					model: Question,
+					as: 'attemptedQuestions',
+				},
+			],
+		})
+			.then((user: any) => {
+				if (!user) {
+					return res.status(404).send({
+						message: 'User Not Found',
+					});
+				}
+
+				return res.status(200).send({ user });
+			})
 			.catch((error: Error) => res.status(400).send({ error }));
 	},
 };

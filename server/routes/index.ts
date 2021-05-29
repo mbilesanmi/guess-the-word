@@ -13,6 +13,7 @@ router.get('/', (_, res: express.Response) =>
 
 router.post('/users', usersController.create);
 router.get('/users', usersController.list);
+router.get('/user/:userId', usersController.getUser);
 
 router.get('/question/:userId', questionsController.getWord);
 router.put('/question/:questionId', questionsController.saveGuess);
