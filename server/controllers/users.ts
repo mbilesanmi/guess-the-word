@@ -9,7 +9,7 @@ export default {
 			username: req.body.username,
 		})
 			.then((user: any) => res.status(201).send({ user }))
-			.catch((error: Error) => res.status(400).send(error));
+			.catch((error: Error) => res.status(400).send({ error }));
 	},
 
 	list(req: any, res: any) {
@@ -22,6 +22,6 @@ export default {
 			],
 		})
 			.then((users: any) => res.status(200).send({ users }))
-			.catch((error: Error) => res.status(400).send(error));
+			.catch((error: Error) => res.status(400).send({ error }));
 	},
 };

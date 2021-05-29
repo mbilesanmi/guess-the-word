@@ -25,7 +25,34 @@ export default {
 
 			return res.status(200).send({ question });
 		} catch (error) {
-			return res.status(400).send(error);
+			return res.status(400).send({ error });
+		}
+	},
+
+	async saveResult(req: express.Request, res: express.Response) {
+		const { questionId } = req.params;
+		const { guesses } = req.body;
+
+		try {
+			const question = await Question.findByPk(questionId);
+
+			if (!question) {
+				return res.status(404).send({
+					message: 'Question not found',
+					status: 'failed',
+				});
+			}
+
+			try {
+				await question.update({
+					guesses,
+				});
+				return res.status(200).send({ question });
+			} catch (error) {
+				return res.status(400).send({ error });
+			}
+		} catch (error) {
+			return res.status(400).send({ error });
 		}
 	},
 };

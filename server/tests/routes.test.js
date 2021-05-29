@@ -14,12 +14,7 @@ describe('User routes', () => {
 	});
 
 	it('should create a new user successfully', async () => {
-		const res = await req
-			.post('/api/users')
-			.send({
-				username: 'test user',
-			})
-			.expect(201);
+		const res = await req.post('/api/users').send({ username: 'test user' }).expect(201);
 
 		expect(res.body).toHaveProperty('user');
 		expect(res.body.user.id).toBe(1);
@@ -35,15 +30,27 @@ describe('User routes', () => {
 });
 
 describe('Question routes', () => {
-	it('should create and return a question successfully', async () => {
+	beforeAll(async () => {
 		await req.post('/api/users').send({
 			username: 'test user',
 		});
+	});
+
+	it('should create and return a question successfully', async () => {
 		const res = await req.get('/api/question/1').expect(200);
 
 		expect(res.body).toHaveProperty('question');
 		expect(res.body.question.id).toEqual(1);
 		expect(res.body.question.userId).toEqual(1);
 		expect(res.body.question.guesses).toBeNull();
+	});
+
+	it("should save and return a user's guess", async () => {
+		const res = await req.put('/api/question/1').send({ guesses: 't,e,s,t' }).expect(200);
+
+		expect(res.body).toHaveProperty('question');
+		expect(res.body.question.id).toEqual(1);
+		expect(res.body.question.userId).toEqual(1);
+		expect(res.body.question.guesses).toEqual('t,e,s,t');
 	});
 });
