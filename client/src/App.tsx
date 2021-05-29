@@ -12,8 +12,8 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className="App">
-			<header className="App-header">
+		<div className="App-header">
+			<header className="">
 				<img src={logo} className="App-logo" alt="logo" />
 				<p>{!data ? 'Loading...' : data}</p>
 			</header>

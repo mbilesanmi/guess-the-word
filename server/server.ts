@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
+import path from 'path';
 
 import routes from './routes';
 import { BASE_ENDPOINT } from './constants';
@@ -29,17 +30,26 @@ if (process.env.NODE_ENV === 'production') {
 /************************************************************************************
  *                               Register all routes
  ***********************************************************************************/
+if (process.env.NODE_ENV === 'production') {
+	// Have Node serve the files for our built React app
+	app.use(express.static(path.resolve(__dirname, '../client/build')));
+}
+
 app.use(BASE_ENDPOINT, routes);
 
 /************************************************************************************
  *                               Express Error Handling
  ***********************************************************************************/
-app.get('*', (req, res) =>
-	res.status(404).send({
-		message: 'Page not found',
-		success: false,
-	}),
-);
+app.get('*', (req, res) => {
+	if (process.env.NODE_ENV === 'production') {
+		res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+	} else {
+		res.status(404).send({
+			message: 'Page not found',
+			success: false,
+		});
+	}
+});
 
 export default app;
 

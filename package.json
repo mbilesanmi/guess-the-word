@@ -4,13 +4,16 @@
 	"description": "vision-craft initialised with create-express-typescript-application.",
 	"main": "server/index.ts",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && cd client && npm install && npm run build",
 		"start": "node ./build/server/index.js",
 		"dev": "ts-node ./server/index.ts",
 		"dev:nodemon": "nodemon -w server -e ts,json -x ts-node ./server/index.ts",
 		"test": "cross-env NODE_ENV=test jest --testTimeout=10000",
 		"migrate:reset": "cross-env NODE_ENV=test npx sequelize-cli db:migrate:undo:all && cross-env NODE_ENV=test npx sequelize-cli db:migrate",
 		"pretest": "npm run migrate:reset"
+	},
+	"engines": {
+		"node": "14.4.0"
 	},
 	"keywords": [
 		"express",
