@@ -12,7 +12,7 @@ export interface QuestionInstance extends Model<QuestionAttributes>, QuestionAtt
 	userId: Number;
 }
 
-export default (sequelize: any) => {
+module.exports = (sequelize: any) => {
 	const Question = sequelize.define('Question', {
 		word: {
 			type: DataTypes.STRING,

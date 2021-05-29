@@ -1,6 +1,15 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 
-export default (sequelize: any) => {
+interface UserAttributes {
+	username: string;
+}
+export interface UserInstance extends Model<UserAttributes>, UserAttributes {
+	id: Number;
+	createdAt?: Date;
+	updatedAt?: Date;
+}
+
+module.exports = (sequelize: any) => {
 	const User = sequelize.define('User', {
 		username: {
 			type: DataTypes.STRING,
