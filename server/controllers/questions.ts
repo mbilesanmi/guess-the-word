@@ -29,7 +29,7 @@ export default {
 		}
 	},
 
-	async saveResult(req: express.Request, res: express.Response) {
+	async saveGuess(req: express.Request, res: express.Response) {
 		const { questionId } = req.params;
 		const { guesses } = req.body;
 

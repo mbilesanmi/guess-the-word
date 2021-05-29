@@ -15,6 +15,6 @@ router.post('/users', usersController.create);
 router.get('/users', usersController.list);
 
 router.get('/question/:userId', questionsController.getWord);
-router.put('/question/:questionId', questionsController.saveResult);
+router.put('/question/:questionId', questionsController.saveGuess);
 
 export default router;
