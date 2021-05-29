@@ -5,11 +5,11 @@ import { Sequelize } from 'sequelize';
 const basename = _basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../config/config.js`)[env];
-const dbUrl = config.use_env_variable || '';
+const dbUrl = process.env[config.use_env_variable] || '';
 
 const db: any = {};
 
-const sequelize: any = config.use_env_variable
+const sequelize: any = dbUrl
 	? new Sequelize(dbUrl, config)
 	: new Sequelize(config.database, config.username, config.password, config);
 
