@@ -30,6 +30,7 @@ Vision Craft guesses game app.
 
 ---
 
+-   Config for CI/CD
 -   Better error handling
 -   More FE integration and api consumption
 -   More api functionality (e.g delete & update user, delete question)
