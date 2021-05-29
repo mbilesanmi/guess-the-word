@@ -34,6 +34,7 @@ Vision Craft guesses game app.
 -   Better error handling
 -   More FE integration and api consumption
 -   More api functionality (e.g delete & update user, delete question)
+-   Ensure questions cannot be updated after guess has been saved
 
 ## Endpoints
 
