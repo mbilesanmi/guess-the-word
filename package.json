@@ -1,7 +1,7 @@
 {
-	"name": "vision-craft",
+	"name": "guess-the-word",
 	"version": "0.0.1",
-	"description": "vision-craft initialised with create-express-typescript-application.",
+	"description": "guess-the-word game.",
 	"main": "server/index.ts",
 	"scripts": {
 		"build": "tsc && cd client && npm install && npm run build",
