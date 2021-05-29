@@ -13,7 +13,6 @@ module.exports = {
 			},
 			guesses: {
 				type: Sequelize.STRING,
-				allowNull: false,
 			},
 			createdAt: {
 				allowNull: false,

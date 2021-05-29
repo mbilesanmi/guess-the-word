@@ -22,6 +22,8 @@ describe('User routes', () => {
 			.expect(201);
 
 		expect(res.body).toHaveProperty('user');
+		expect(res.body.user.id).toBe(1);
+		expect(res.body.user.username).toBe('test user');
 	});
 
 	it('should return all users', async () => {
@@ -29,5 +31,19 @@ describe('User routes', () => {
 
 		expect(res.body).toHaveProperty('users');
 		expect(res.body.users).toHaveLength(1);
+	});
+});
+
+describe('Question routes', () => {
+	it('should create and return a question successfully', async () => {
+		await req.post('/api/users').send({
+			username: 'test user',
+		});
+		const res = await req.get('/api/question/1').expect(200);
+
+		expect(res.body).toHaveProperty('question');
+		expect(res.body.question.id).toEqual(1);
+		expect(res.body.question.userId).toEqual(1);
+		expect(res.body.question.guesses).toBeNull();
 	});
 });

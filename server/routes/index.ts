@@ -3,7 +3,7 @@ import express, { Router } from 'express';
 import controllers from '../controllers';
 
 const router = Router();
-const { usersController } = controllers;
+const { usersController, questionsController } = controllers;
 
 router.get('/', (_, res: express.Response) =>
 	res.status(200).send({
@@ -13,5 +13,7 @@ router.get('/', (_, res: express.Response) =>
 
 router.post('/users', usersController.create);
 router.get('/users', usersController.list);
+
+router.get('/question/:userId', questionsController.getWord);
 
 export default router;
