@@ -36,11 +36,11 @@ getFilesWithKeyword('router', __dirname + '/app').forEach((file: string) => {
 /************************************************************************************
  *                               Express Error Handling
  ***********************************************************************************/
-app.get('*', (req, res) => {
-	return res.status(404).send({
+app.get('*', (req, res) =>
+	res.status(404).send({
 		message: 'Page not found',
 		success: false,
-	});
-});
+	}),
+);
 
 export default app;
