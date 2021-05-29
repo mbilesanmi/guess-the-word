@@ -2,12 +2,12 @@
 	"name": "vision-craft",
 	"version": "0.0.1",
 	"description": "vision-craft initialised with create-express-typescript-application.",
-	"main": "src/index.ts",
+	"main": "server/index.ts",
 	"scripts": {
 		"build": "tsc",
-		"start": "node ./build/src/index.js",
-		"dev": "ts-node ./src/index.ts",
-		"dev:nodemon": "nodemon -w src -e ts,json -x ts-node ./src/index.ts",
+		"start": "node ./build/server/index.js",
+		"dev": "ts-node ./server/index.ts",
+		"dev:nodemon": "nodemon -w server -e ts,json -x ts-node ./server/index.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
