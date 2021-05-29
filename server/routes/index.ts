@@ -12,5 +12,6 @@ router.get('/', (_, res: express.Response) =>
 );
 
 router.post('/users', usersController.create);
+router.get('/users', usersController.list);
 
 export default router;
