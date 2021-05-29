@@ -17,13 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Handle logs in console during development
 if (process.env.NODE_ENV === 'development' || config.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-  app.use(cors());
+	app.use(morgan('dev'));
+	app.use(cors());
 }
 
 // Handle security and origin in production
 if (process.env.NODE_ENV === 'production' || config.NODE_ENV === 'production') {
-  app.use(helmet());
+	app.use(helmet());
 }
 
 /************************************************************************************
@@ -31,20 +31,20 @@ if (process.env.NODE_ENV === 'production' || config.NODE_ENV === 'production') {
  ***********************************************************************************/
 
 getFilesWithKeyword('router', __dirname + '/app').forEach((file: string) => {
-  const { router } = require(file);
-  app.use('/', router);
-})
+	const { router } = require(file);
+	app.use('/', router);
+});
 /************************************************************************************
  *                               Express Error Handling
  ***********************************************************************************/
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  return res.status(500).json({
-    errorName: err.name,
-    message: err.message,
-    stack: err.stack || 'no stack defined'
-  });
+	return res.status(500).json({
+		errorName: err.name,
+		message: err.message,
+		stack: err.stack || 'no stack defined',
+	});
 });
 
 export default app;
