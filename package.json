@@ -50,7 +50,8 @@
 		"testEnvironment": "node",
 		"preset": "ts-jest",
 		"coveragePathIgnorePatterns": [
-			"/node_modules/"
+			"/node_modules/",
+			"client"
 		]
 	}
 }
